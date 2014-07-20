@@ -132,7 +132,7 @@ func main() {
 	users["110707"] = makeUser("John", "Doe", 37.478182, -122.1, 110707, 10, 12, 3);
 	users["2970947"] = makeUser("Sally", "Rice", 37.4, -122.186032, 106224, 10, 12, 3);
 	users["157247"] = makeUser("Thomas", "Crowder", 37.574363, -122.332224, 157247, 10, 12, 6);
-	users["2767207"] = makeUser("Elliot", "Frisch", 37.3, -122.1, 2767207, 10, 12, 3);
+	users["2767207"] = makeUser("Elliot", "Frisch", 37.3, -122.0, 2767207, 10, 12, 3);
 	
 	go publishPubNub(users)
 	
