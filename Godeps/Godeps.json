@@ -1,0 +1,5 @@
+{
+	"ImportPath": "github.com/ansonl/polocomap",
+	"GoVersion": "go1.2.2",
+	"Deps": []
+}
