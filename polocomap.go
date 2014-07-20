@@ -129,10 +129,10 @@ func main() {
 	users = make(map[string]User)
 	users["761902"] = makeUser("Anson", "Liu", 37.75315, -122.423517, 761902, 10, 12, 3);
 	users["3858448"] = makeUser("Emily", "Wang", 37.572939, -122.6, 3858448, 20, 12, 3);
-	users["110707"] = makeUser("John", "Doe", 37.478182, -122.186032, 110707, 10, 12, 3);
-	users["2970947"] = makeUser("Elliot", "Frisch", 37.478182, -122.186032, 2970947, 10, 12, 3);
+	users["110707"] = makeUser("John", "Doe", 37.478182, -122.8, 110707, 10, 12, 3);
+	users["2970947"] = makeUser("Elliot", "Frisch", 37.47, -122.186032, 2970947, 10, 12, 3);
 	users["157247"] = makeUser("Thomas", "Crowder", 37.574363, -122.332224, 157247, 10, 12, 3);
-	users["2767207"] = makeUser("Elliot", "Frisch", 37.3, -121.7, 2767207, 10, 12, 3);
+	users["2767207"] = makeUser("Elliot", "Frisch", 37.35, -121.6, 2767207, 10, 12, 3);
 	
 	go publishPubNub(users)
 	
