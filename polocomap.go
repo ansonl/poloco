@@ -10,6 +10,7 @@ import (
     "log"
     "time"
     "encoding/json"
+    "strconv"
 )
 
 var historyUrl = "http://pubsub.pubnub.com/history/sub-c-32127d56-0f84-11e4-baa3-02ee2ddab7fe/redwoodcity/0/1"
@@ -38,9 +39,31 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, string(b))
 }
 
+func addUserHandler(w http.ResponseWriter, r *http.Request) {
+
+    	r.ParseForm()
+    	fmt.Println(r.Form)
+    
+    	//bypass same origin policy
+    	w.Header().Set("Access-Control-Allow-Origin", "*")
+    
+    	fName := r.Form["fName"][0]
+    	lName := r.Form["lName"][0]
+    	lat, _ := strconv.ParseFloat(r.Form["lat"][0], 32)
+    	lon, _ := strconv.ParseFloat(r.Form["lon"][0], 32)
+    	stackId, _ := strconv.ParseInt(r.Form["stackId"][0], 0, 64)
+    	travelRange, _ := strconv.ParseInt(r.Form["travelRange"][0], 0, 64)
+    	
+    	users[r.Form["stackId"][0]] = makeUser(fName, lName, float32(lat), float32(lon), int(stackId), int(travelRange), 0, 0);
+    	
+    	fmt.Println(r.Form);
+    	
+    	fmt.Fprintf(w, "User added")
+}
+
 func server() {
 	http.HandleFunc("/users/", userHandler)
-	//http.HandleFunc("/", rootHandler)
+	http.HandleFunc("/adduser", addUserHandler)
     
     err := http.ListenAndServe(":"+os.Getenv("PORT"), nil) 
     fmt.Println("Listening on " + os.Getenv("PORT"))
@@ -105,10 +128,11 @@ func main() {
 	
 	users = make(map[string]User)
 	users["761902"] = makeUser("Anson", "Liu", 37.75315, -122.423517, 761902, 10, 12, 3);
-	users["3858448"] = makeUser("Emily", "Wang", 37.372939, -122.005216, 3858448, 20, 12, 3);
+	users["3858448"] = makeUser("Emily", "Wang", 37.372939, -122.186032, 3858448, 20, 12, 3);
 	users["110707"] = makeUser("John", "Doe", 37.478182, -122.186032, 110707, 10, 12, 3);
-	users["2970947"] = makeUser("Elliot", "Frisch", 37.3, -122, 2970947, 10, 12, 3);
+	users["2970947"] = makeUser("Elliot", "Frisch", 37.478182, -122.186032, 2970947, 10, 12, 3);
 	users["157247"] = makeUser("Thomas", "Crowder", 37.574363, -122.332224, 157247, 10, 12, 3);
+	users["2767207"] = makeUser("Elliot", "Frisch", 37.3, -121.7, 2767207, 10, 12, 3);
 	
 	go publishPubNub(users)
 	
