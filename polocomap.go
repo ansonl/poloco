@@ -78,7 +78,7 @@ func publishPubNub(data map[string]User) {
 		panic(err)
 	}
     
-    fmt.Println("Sending GET request to " + publishUrl + string(b) + "...");
+    //fmt.Println("Sending GET request to " + publishUrl + string(b) + "...");
     
     response, err := http.Get(publishUrl + string(b))
     if err != nil {
@@ -104,8 +104,11 @@ func main() {
 	go server()
 	
 	users = make(map[string]User)
-	users["761902"] = makeUser("Anson", "Liu", 37.490315, -122.223517, 761902, 10, 12, 3);
+	users["761902"] = makeUser("Anson", "Liu", 37.75315, -122.423517, 761902, 10, 12, 3);
+	users["3858448"] = makeUser("Emily", "Wang", 37.372939, -122.005216, 3858448, 20, 12, 3);
 	users["110707"] = makeUser("John", "Doe", 37.478182, -122.186032, 110707, 10, 12, 3);
+	users["2970947"] = makeUser("Elliot", "Frisch", 37.3, -122, 2970947, 10, 12, 3);
+	users["157247"] = makeUser("Thomas", "Crowder", 37.574363, -122.332224, 157247, 10, 12, 3);
 	
 	go publishPubNub(users)
 	
