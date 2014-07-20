@@ -49,7 +49,7 @@ func server() {
     }    
 }
 
-
+/*
 func updateMap() {
     //fmt.Println("Sending GET request to " + history + "...");
     
@@ -70,7 +70,7 @@ func updateMap() {
         latestLoc = string(contents)
     }
 }
-
+*/
 
 func publishPubNub(data map[string]User) {
     b, err := json.Marshal(users)
